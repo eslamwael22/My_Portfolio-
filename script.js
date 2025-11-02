@@ -44,3 +44,25 @@ document.addEventListener('click', function(e){
     document.getElementById('modal').style.display = 'none';
   }
 });
+// Animate skill bars when they appear on screen
+const skillSection = document.getElementById('skills');
+const skillBars = document.querySelectorAll('.skill-level');
+
+function animateSkills() {
+  skillBars.forEach(bar => {
+    const target = bar.getAttribute('data-skill');
+    bar.style.width = target + '%';
+  });
+}
+
+let skillsAnimated = false;
+window.addEventListener('scroll', () => {
+  const sectionPos = skillSection.getBoundingClientRect().top;
+  const screenPos = window.innerHeight / 1.2;
+
+  if (sectionPos < screenPos && !skillsAnimated) {
+    animateSkills();
+    skillsAnimated = true;
+  }
+});
+
